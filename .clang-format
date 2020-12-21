@@ -1,0 +1,9 @@
+Language: Cpp
+BasedOnStyle: LLVM
+
+AllowShortCaseLabelsOnASingleLine: true
+FixNamespaceComments: false
+IndentCaseLabels: true
+NamespaceIndentation: All
+PointerAlignment: Left
+SpaceBeforeCpp11BracedList: true

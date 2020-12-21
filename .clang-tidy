@@ -1,0 +1,17 @@
+Checks: >
+  *,
+  -abseil-*,
+  -android-*,
+  -fuchsia-*,
+  -google-*,
+  -llvm-*,
+  -llvmlibc-*,
+  -zircon-*,
+
+  -cppcoreguidelines-avoid-magic-numbers,
+  -hicpp-braces-around-statements,
+  -readability-braces-around-statements,
+  -readability-isolate-declaration,
+  -readability-magic-numbers
+
+FormatStyle: file
