@@ -228,10 +228,10 @@ def plot_linear_fit(
     xmax = x.max() + 0.2 * xdiff
     xs = np.linspace(xmin, xmax, 1000)
     ys = line(xs, fit.m, fit.c)
-    plt.plot(xs, ys, "-", color="tab:red", label=r"$ \mu_Y $")
+    plt.plot(xs, ys, "-", color="red", label=r"$ \mu_Y $")
 
     # Incertezza/e retta best fit
-    colors = ["tab:orange", "tab:pink", "tab:blue"]
+    colors = ["tab:orange", "tab:green", "tab:blue"]
     assert len(sigmas) <= len(colors)
 
     previous_s = 0
@@ -242,14 +242,14 @@ def plot_linear_fit(
         plt.plot(
             xs,
             ys + (s * sigma),
-            "-", linewidth=0.5,
+            "-", linewidth=1,
             color=color, label=label
         )
 
         plt.plot(
             xs,
             ys - (s * sigma),
-            "-", linewidth=0.5,
+            "-", linewidth=1,
             color=color
         )
 
@@ -257,14 +257,14 @@ def plot_linear_fit(
             xs,
             ys + (s * sigma),
             ys + (previous_s * sigma),
-            color=color, alpha=0.3
+            color=color, alpha=0.2
         )
 
         plt.fill_between(
             xs,
             ys - (s * sigma),
             ys - (previous_s * sigma),
-            color=color, alpha=0.3
+            color=color, alpha=0.2
         )
 
         previous_s = s
@@ -288,9 +288,11 @@ def plot_residuals(
     xlabel: str,
     yunit: str,
     color: PColor = colors["blue"],
-    standardized: bool = False
+    standardized: bool = False,
+    digits: Optional[int] = None,
+    verbosity: int = 0
 ):
-    fit = linear_fit(x, y, sigma_y)
+    fit = linear_fit(x, y, sigma_y, digits, verbosity)
 
     mu_Y = line(x, fit.m, fit.c)
     d = y - mu_Y
@@ -302,7 +304,7 @@ def plot_residuals(
         sigma_y /= sigma_y
         ylabel = r"$ d / \sigma_y $"
 
-    ylabel += f"\n{yunit}"
+    ylabel += f" {yunit}"
 
     plt.errorbar(
         x, d,
