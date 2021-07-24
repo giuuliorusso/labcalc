@@ -295,18 +295,24 @@ dove $|g - g_{Roma}|$ è la discrepanza dal valore atteso. $z$ quindi è la dist
 \subsubsection{Metodo dei minimi quadrati}
 
 Il metodo utilizzato per il fit lineare è il \textbf{metodo dei minimi quadrati}.
+
+\bigskip
+
+\noindent Data una relazione lineare tra due grandezze fisiche
 \begin{equation}
-  \mu_Y = m \cdot \mu_X + c
+  \mu_Y = m \cdot \mu_X + c \,,
 \end{equation}
-Formule:
+indichiamo con $\mu_X$ e $\mu_Y$ i valori veri delle grandezze e con $x_i$ e $y_i$ i valori osservati sperimentalmente.
+
+Formule che legano le migliori stime dei parametri $m$ e $c$ ai dati sperimentali:
 \begin{align}
-  \sigma_{Y_i} &= \sqrt{\sigma_{Y_i}^2 + (m \sigma_{X_i})^2} \\
   \hat{m} = \text{E}[m] &= \frac{\text{Cov}[x,y]}{\text{Var}[x]} \\
   \hat{c} = \text{E}[c] &= \overline{y} - \hat{m} \cdot \overline{x} \\
-  \text{Var}[\hat{m}] &= \frac{1}{\text{Var}[x] \sum_i \sigma_{Y_i}^{-2}} \\
+  \text{Var}[\hat{m}] &= \frac{1}{\text{Var}[x] \sum_i \sigma_{y_i}^{-2}} \\
   \text{Var}[\hat{c}] &= \overline{x^2} \cdot \text{Var}[\hat{m}] \\
   \text{Cov}[\hat{m},\hat{c}] &= -\overline{x} \cdot \text{Var}[\hat{m}] \\
-  \rho[\hat{m},\hat{c}] &= \frac{\text{Cov}[\hat{m},\hat{c}]}{\sqrt{\text{Var}[\hat{m}] \text{Var}[\hat{c}]}}
+  \rho[\hat{m},\hat{c}] &= \frac{\text{Cov}[\hat{m},\hat{c}]}{\sqrt{\text{Var}[\hat{m}] \text{Var}[\hat{c}]}} \\
+  \sigma_{y_i} &= \sqrt{\sigma_{y_i}^2 + (m \sigma_{x_i})^2} \label{eq:sigma_y}
 \end{align}
 L'incertezza su $\mu_Y$ è ottenuta dalla propagazione delle incertezze, tenendo conto del termine di correlazione:
 \begin{align}
@@ -467,28 +473,29 @@ Le misure sono state effettuate in quattro configurazioni diverse: 4 dischi, 6 d
 %---------------------------------------------
 \subsection{Misura di \texorpdfstring{$g$}{g}}
 
-Stimando in maniere preliminare il coefficiente angolare impostando $\sigma_x = 0$ si ottiene $\alpha = 23.3696971$. Usando questo $\alpha$ per calcolare le $\sigma_{Y_i}$ e ripetendo il fit lineare si ottengono i seguenti valori:
+Stimando in maniera preliminare il coefficiente angolare con le $\sigma_{x_i} = 0$ si ottiene $\alpha = 23.372185935$.
+Usando questo $\alpha$ per calcolare le $\sigma_{y_i}$ (Formula \ref{eq:sigma_y}) e ripetendo il fit lineare si ottengono i seguenti valori:
 
 \begin{figure}[ht]
   % Fit
   \begin{minipage}{0.55 \textwidth}
-    \includegraphics[width=\textwidth]{example-image}
+    \includegraphics[width=\textwidth]{Images/Fit.pdf}
     \caption{Fit lineare.}
   \end{minipage}
   \hfill
   % Table
-  \begin{minipage}{0.4 \textwidth}
+  \begin{minipage}{0.40 \textwidth}
     \begin{tabular}{lll}
       \toprule
       & valore & unità \\
       \midrule
-      $\overline{x}$             & 0.55985438   & \si{\second\squared} \\
-      $\overline{y}$             & 18.56827978  & \si{\centi\metre} \\
-      $\overline{x^2}$           & 0.33791517   & \si{\second\tothe{4}} \\
-      $\overline{xy}$            & 10.96705875  & \si{\second\squared\centi\metre} \\
-      Var$[x]$                   & 0.02447825   & \si{\second\tothe{4}} \\
-      Cov$[x,y]$                 & 0.57152617   & \si{\second\squared\centi\metre} \\
-      $\sum_i \sigma_{y_i}^{-2}$ & 671.00945559 & \si{\per\centi\metre\squared} \\
+      $\overline{x}$             & 0.5105315019 & \si{\second\squared} \\
+      $\overline{y}$             & 17.414106141 & \si{\centi\metre} \\
+      $\overline{x^2}$           & 0.2867690409 & \si{\second\tothe{4}} \\
+      $\overline{xy}$            & 9.5005831583 & \si{\second\squared\centi\metre} \\
+      Var$[x]$                   & 0.0261266264 & \si{\second\tothe{4}} \\
+      Cov$[x,y]$                 & 0.6101333948 & \si{\second\squared\centi\metre} \\
+      $\sum_i \sigma_{y_i}^{-2}$ & 332.36736075 & \si{\per\centi\metre\squared} \\
       \bottomrule
     \end{tabular}
     \caption{Quantità utilizzate come input nel fit lineare. $y = x_{eq}$, $x = T^2$, $\sigma_{y_i}$ = incertezze \underline{finali} associate alle $y_i$ tenendo conto anche delle incertezze sulle $x_i$.}
@@ -498,11 +505,11 @@ Stimando in maniere preliminare il coefficiente angolare impostando $\sigma_x = 
 \begin{figure}[ht]
   \centering
   \begin{minipage}{0.5 \textwidth}
-    \includegraphics[width=\textwidth]{example-image-a}
+    \includegraphics[width=\textwidth]{Images/Residui.pdf}
     \caption{Residui.}
   \end{minipage}%
   \begin{minipage}{0.5 \textwidth}
-    \includegraphics[width=\textwidth]{example-image-b}
+    \includegraphics[width=\textwidth]{Images/ResiduiS.pdf}
     \caption{Residui standardizzati.}
   \end{minipage}
 \end{figure}
@@ -513,8 +520,8 @@ Stimando in maniere preliminare il coefficiente angolare impostando $\sigma_x = 
     \toprule
     & valore & $\sigma$ & unità \\
     \midrule
-    $\alpha$ & 23.35 & 0.25 & \si{\centi\metre\per\second\squared} \\
-    $x_0$    & 5.50  & 0.14 & \si{\centi\metre} \\
+    $\alpha$ & 23.35 & 0.34 & \si{\centi\metre\per\second\squared} \\
+    $x_0$    & 5.49  & 0.18 & \si{\centi\metre} \\
     \bottomrule
   \end{tabular}
   \caption{Risultato del fit lineare $x_{eq} = \alpha T^2 + x_0$. Migliori stime dei parametri $\alpha$ e $x_0$ con le relative incertezze.}
@@ -528,7 +535,7 @@ Stimando in maniere preliminare il coefficiente angolare impostando $\sigma_x = 
     \toprule
     & valore & $\sigma$ & unità \\
     \midrule
-    $g$ & 9.2 & 0.1 & \si{\metre\per\second\squared} \\
+    $g$ & 9.22 & 0.13 & \si{\metre\per\second\squared} \\
     \bottomrule
   \end{tabular}
   \caption{Risultato finale per l'accelerazione di gravità $g$ con la corrispondente incertezza.}
@@ -538,7 +545,7 @@ Stimando in maniere preliminare il coefficiente angolare impostando $\sigma_x = 
 \subsubsection{Considerazioni sul valore sperimentale di \texorpdfstring{$g$}{g}}
 
 \begin{equation*}
-  z = \frac{|g - g_{Roma}|}{\sigma_g} = 6.03066
+  z = \frac{|g - g_{Roma}|}{\sigma_g} = 4.37
 \end{equation*}
 È evidente un elevata discrepanza dal valore aspettato. Questo è dovuto probabilmente a diversi fattori: il tempo di reazione durante le misure dei periodi, la non perfetta oscillazione verticale della molla e la non perfetta lettura delle $x_{eq}$ dovuta ad un probabile errore di parallasse (nonostante l'utilizzo della squadra).
 
